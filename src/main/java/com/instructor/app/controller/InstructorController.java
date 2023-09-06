@@ -1,5 +1,6 @@
 package com.instructor.app.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.instructor.app.entity.Course;
 import com.instructor.app.entity.Instructor;
 import com.instructor.app.entity.InstructorDtl;
@@ -44,8 +46,7 @@ public class InstructorController {
 	private InstructorService instructorService;
 
 	private final Logger logger = Logger.getLogger(InstructorController.class.getName());
-	
-	
+
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@GetMapping("/list")
 	public List<Instructor> getInstructors() {
@@ -54,26 +55,19 @@ public class InstructorController {
 
 		return instructors;
 	}
-	
-	
+
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PostMapping(value = "/add", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> addInstructor(@RequestBody Map<String, Object> payload) {
+
 		
-		String jsonString="";
 		logger.info("" + payload);
-		logger.info("" + payload.get("instructor"));
-//		if (payload.containsKey("body")) {
-//			 jsonString = (String) payload.get("body");
-//			 logger.info("with body : "+jsonString);
-//		}
-//		else {
-//			 jsonString = payload.toString();
-//			 logger.info("without body : "+jsonString);
-//		}
-		jsonString = (String) payload.get("body");
-		Map<String, Object> jsonMap;
+
+		String jsonString = (String) payload.get("body");
+	
 		
+		Map<String, Object> jsonMap;	
+
 		try {
 			jsonMap = new ObjectMapper().readValue(jsonString, new TypeReference<Map<String, Object>>() {
 			});
@@ -102,8 +96,5 @@ public class InstructorController {
 
 		return ResponseEntity.ok("Instructor added successfully");
 	}
-	
-	
-
 
 }

@@ -13,7 +13,9 @@
 	<artifactId>InstructorApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>InstructorApp</name>
+	
 	<description>InstructorApp</description>
+	 <packaging>jar</packaging>
 	<properties>
 		<!--<springframework.version>6.0.11</springframework.version> <java.version>1.8</java.version> 
 			<hibernate.version>6.2.7.Final</hibernate.version> <c3po.version>0.9.5.2</c3po.version> -->
@@ -23,7 +25,7 @@
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
 			<artifactId>mariadb-java-client</artifactId>
-			
+
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -78,6 +80,12 @@
 			<artifactId>jakarta.servlet-api</artifactId>
 			<version>4.0.2</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.10.1</version>
+		</dependency>
 
 		<!--<dependency> <groupId>org.springframework</groupId> <artifactId>spring-orm</artifactId> 
 			<version>${springframework.version}</version> </dependency> <dependency> 
@@ -108,6 +116,7 @@
 	</dependencies>
 
 	<build>
+		 	  <finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
